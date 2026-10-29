@@ -84,8 +84,9 @@ private val sections = listOf(
 private fun ChargeTrackApp(onStartTracking: () -> Unit, onStopTracking: () -> Unit) {
     var selected by remember { mutableIntStateOf(0) }
     var refresh by remember { mutableIntStateOf(0) }
-    var ratedCapacity by remember { mutableIntStateOf(ChargeData.ratedCapacity(androidx.compose.ui.platform.LocalContext.current)) }
-    val context = androidx.compose.ui.platform.LocalContext.current
+        val context = androidx.compose.ui.platform.LocalContext.current
+    var ratedCapacity by remember { mutableIntStateOf(ChargeData.ratedCapacity(context)) }
+    
     val sessions = remember(refresh) { ChargeData.sessions(context) }
     val batteryManager = remember(context) {
         context.getSystemService(android.content.Context.BATTERY_SERVICE) as android.os.BatteryManager
